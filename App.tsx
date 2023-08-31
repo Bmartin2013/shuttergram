@@ -1,73 +1,34 @@
 import React, {useState} from 'react';
-import Camera from './android/app/src/components/Camera';
+import CameraButton from './android/app/src/components/CameraButton';
 
-import {
-  Image,
-  SafeAreaView,
-  StatusBar,
-  StyleSheet,
-  useColorScheme,
-  View,
-} from 'react-native';
+import {SafeAreaView, StatusBar, StyleSheet, View} from 'react-native';
 
-import {Colors} from 'react-native/Libraries/NewAppScreen';
 import {Asset} from 'react-native-image-picker';
 import MyPictures from './android/app/src/components/MyPictures';
+import Header from './android/app/src/components/Header';
+import { layoutStyle } from './android/app/src/styles/app';
 
 function App(): JSX.Element {
-  const isDarkMode = useColorScheme() === 'dark';
   const [assets, setAssets] = useState<Asset[]>([]);
 
   const handleAssetURI = (asset: Asset) => {
     setAssets((prevAssets: Asset[]) => [...prevAssets, asset]);
   };
 
-  const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
-  };
-
   return (
     <>
-      <StatusBar
-        barStyle={isDarkMode ? 'light-content' : 'dark-content'}
-        backgroundColor={backgroundStyle.backgroundColor}
-      />
-      <SafeAreaView style={styles.safeViewContainer}>
-        <View style={styles.headerContainer}>
-          <Image source={require('./header.png')} />
-        </View>
-        <View style={styles.myPicturesContainer}>
+      <StatusBar />
+      <SafeAreaView style={layoutStyle.safeView}>
+        <Header />
+        <View style={layoutStyle.myPictures}>
           <MyPictures assets={assets} />
         </View>
-        <View style={styles.cameraButtonContainer}>
-          <Camera handleAssetUri={handleAssetURI} />
+        <View style={layoutStyle.cameraButton}>
+          <CameraButton handleAssetUri={handleAssetURI} />
         </View>
       </SafeAreaView>
     </>
   );
 }
-
-const styles = StyleSheet.create({
-  cameraButtonContainer: {
-    flex: 1,
-    justifyContent: 'center',
-    marginHorizontal: 20,
-  },
-  headerContainer: {
-    flex: 1,
-    backgroundColor: '#009688',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  safeViewContainer: {
-    flex: 1,
-    backgroundColor: '#c9c7c7',
-  },
-  myPicturesContainer: {
-    flex: 4,
-    justifyContent: 'center',
-    padding: 20,
-  },
-});
 
 export default App;

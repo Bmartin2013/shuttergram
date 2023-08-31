@@ -1,32 +1,24 @@
 import React, {useState} from 'react';
-import {TouchableOpacity, StyleSheet, Text, View} from 'react-native';
+import {TouchableOpacity, Text} from 'react-native';
 import CameraProps from '../interfaces/Camera';
 
 import {
   launchCamera,
   ImagePickerResponse,
-  MediaType,
   Asset,
 } from 'react-native-image-picker';
+import { CAMERA_ERROR_MSG, CAMERA_OPTIONS } from '../constants';
+import { cameraButtonStyles } from '../styles/cameraButton';
 
-const CAMERA_ERROR_MSG = 'Camera error:';
 
-function Camera({handleAssetUri}: CameraProps): JSX.Element {
+function CameraButton({handleAssetUri}: CameraProps): JSX.Element {
   const [isLoading, setLoading] = useState(false);
 
   const handleLaunchCamera = async () => {
     setLoading(true);
 
-    const cameraOptions = {
-      storageOptions: {
-        skipBackup: true,
-        path: 'images',
-      },
-      mediaType: 'photo' as MediaType,
-    };
-
     try {
-      const response = await launchCamera(cameraOptions);
+      const response = await launchCamera(CAMERA_OPTIONS);
       handleImagePickerResponse(response);
     } catch (error) {
       console.error(CAMERA_ERROR_MSG, error);
@@ -54,30 +46,12 @@ function Camera({handleAssetUri}: CameraProps): JSX.Element {
     <TouchableOpacity
       disabled={isLoading}
       onPress={isLoading ? undefined : handleLaunchCamera}
-      style={styles.cammeraButtonContainer}>
-      <Text style={styles.appButtonText}>
+      style={cameraButtonStyles.container}>
+      <Text style={cameraButtonStyles.label}>
         {isLoading ? 'Loading...' : 'Take Picture'}
       </Text>
     </TouchableOpacity>
   );
 }
 
-const styles = StyleSheet.create({
-  cammeraButtonContainer: {
-    elevation: 8,
-    backgroundColor: '#009688',
-    borderRadius: 10,
-    paddingVertical: 10,
-    paddingHorizontal: 12
-    
-  },
-  appButtonText: {
-    fontSize: 18,
-    color: '#fff',
-    fontWeight: 'bold',
-    alignSelf: 'center',
-    textTransform: 'uppercase',
-  },
-});
-
-export default Camera;
+export default CameraButton;
