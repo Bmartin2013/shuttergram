@@ -1,5 +1,7 @@
 import React, {useState} from 'react';
-import {Button} from 'react-native';
+import {TouchableOpacity, StyleSheet, Text, View} from 'react-native';
+import CameraProps from '../interfaces/Camera';
+
 import {
   launchCamera,
   ImagePickerResponse,
@@ -7,12 +9,7 @@ import {
   Asset,
 } from 'react-native-image-picker';
 
-interface CameraProps {
-  handleAssetUri: (asset: Asset) => void;
-}
-
 const CAMERA_ERROR_MSG = 'Camera error:';
-const USER_CANCEL_MSG = 'User canceled image picker by pressing back button';
 
 function Camera({handleAssetUri}: CameraProps): JSX.Element {
   const [isLoading, setLoading] = useState(false);
@@ -54,12 +51,33 @@ function Camera({handleAssetUri}: CameraProps): JSX.Element {
   };
 
   return (
-    <Button
-      title={isLoading ? 'Loading...' : 'Take Picture'}
-      onPress={isLoading ? undefined : handleLaunchCamera}
+    <TouchableOpacity
       disabled={isLoading}
-    />
+      onPress={isLoading ? undefined : handleLaunchCamera}
+      style={styles.cammeraButtonContainer}>
+      <Text style={styles.appButtonText}>
+        {isLoading ? 'Loading...' : 'Take Picture'}
+      </Text>
+    </TouchableOpacity>
   );
 }
+
+const styles = StyleSheet.create({
+  cammeraButtonContainer: {
+    elevation: 8,
+    backgroundColor: '#009688',
+    borderRadius: 10,
+    paddingVertical: 10,
+    paddingHorizontal: 12
+    
+  },
+  appButtonText: {
+    fontSize: 18,
+    color: '#fff',
+    fontWeight: 'bold',
+    alignSelf: 'center',
+    textTransform: 'uppercase',
+  },
+});
 
 export default Camera;
