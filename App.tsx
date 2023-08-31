@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import CameraButton from './android/app/src/components/CameraButton';
 
-import {SafeAreaView, StatusBar, StyleSheet, View} from 'react-native';
+import {SafeAreaView, StatusBar, View} from 'react-native';
 
 import {Asset} from 'react-native-image-picker';
 import MyPictures from './android/app/src/components/MyPictures';
