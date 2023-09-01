@@ -13,15 +13,20 @@ const styles = StyleSheet.create({
     appButtonText: {
       fontSize: 18,
       color: COLORS.white,
+      textAlign: "center"
     },
     center:{
       fontWeight: 'bold',
       alignSelf: 'center'
+    },
+    cameraRejected: {
+      textAlign: "center",
     }
   });
 
 
 export const cameraButtonStyles = {
     container: styles.cammeraButtonContainer,
-    label: [styles.appButtonText,styles.center]
+    label: [styles.appButtonText,styles.center],
+    cameraRejected: [styles.cameraRejected]
 }
