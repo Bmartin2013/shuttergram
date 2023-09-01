@@ -6,30 +6,18 @@ import {SafeAreaView, StatusBar, View} from 'react-native';
 import MyPictures from './android/app/src/components/MyPictures';
 import Header from './android/app/src/components/Header';
 import {layoutStyle} from './android/app/src/styles/app';
-import {
-  handlePicture,
-  getFileContent,
-  createFolder,
-} from './android/app/src/helpers/FsHelper';
-import {SHUTTERGRAM_FOLDER} from './android/app/src/constants';
+import {getPictures, updatePictures} from './android/app/src/utils/FsUtils';
 import PictureProps from './android/app/src/interfaces/Pictures';
 
 function App(): JSX.Element {
   const [pictures, setPictures] = useState<PictureProps[]>([]);
 
-  const getPictures = async () => {
-    const result = await getFileContent(SHUTTERGRAM_FOLDER);
-    setPictures(result);
-  };
-
-  const handleAssetURI = (filePath: string, fileName: string) => {
-    handlePicture(filePath, `${SHUTTERGRAM_FOLDER}/${fileName}`);
-    getPictures();
+  const onHandleAsset = (filePath: string, fileName: string) => {
+    updatePictures(filePath, fileName, setPictures);
   };
 
   useEffect(() => {
-    createFolder();
-    getPictures();
+    getPictures(setPictures);
   }, []);
 
   return (
@@ -41,7 +29,7 @@ function App(): JSX.Element {
           <MyPictures pictures={pictures} />
         </View>
         <View style={layoutStyle.cameraButton}>
-          <CameraButton handleAssetUri={handleAssetURI} />
+          <CameraButton onHandleAsset={onHandleAsset} />
         </View>
       </SafeAreaView>
     </>

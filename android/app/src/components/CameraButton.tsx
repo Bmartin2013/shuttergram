@@ -9,7 +9,7 @@ import {
 import {CAMERA_ERROR_MSG, CAMERA_OPTIONS} from '../constants';
 import {cameraButtonStyles} from '../styles/cameraButton';
 
-function CameraButton({handleAssetUri}: CameraProps): JSX.Element {
+function CameraButton({onHandleAsset}: CameraProps): JSX.Element {
   const [isLoading, setLoading] = useState(false);
   const [cameraRejected, setCameraRejected] = useState(false);
 
@@ -35,7 +35,7 @@ function CameraButton({handleAssetUri}: CameraProps): JSX.Element {
     if (response.assets && response.assets.length > 0) {
       response.assets.forEach((asset: Asset) => {
         if (asset.uri && asset.fileName) {
-          handleAssetUri(asset.uri, asset.fileName);
+          onHandleAsset(asset.uri, asset.fileName);
         }
       });
     }
