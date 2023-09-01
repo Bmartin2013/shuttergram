@@ -1,11 +1,15 @@
-import React, { useState } from 'react';
-import { TouchableOpacity, Text, PermissionsAndroid } from 'react-native';
+import React, {useState} from 'react';
+import {TouchableOpacity, Text, PermissionsAndroid} from 'react-native';
 import CameraProps from '../interfaces/Camera';
-import { launchCamera, ImagePickerResponse, Asset } from 'react-native-image-picker';
-import { CAMERA_ERROR_MSG, CAMERA_OPTIONS } from '../constants';
-import { cameraButtonStyles } from '../styles/cameraButton';
+import {
+  launchCamera,
+  ImagePickerResponse,
+  Asset,
+} from 'react-native-image-picker';
+import {CAMERA_ERROR_MSG, CAMERA_OPTIONS} from '../constants';
+import {cameraButtonStyles} from '../styles/cameraButton';
 
-function CameraButton({ handleAssetUri }: CameraProps): JSX.Element {
+function CameraButton({handleAssetUri}: CameraProps): JSX.Element {
   const [isLoading, setLoading] = useState(false);
   const [cameraRejected, setCameraRejected] = useState(false);
 
@@ -30,8 +34,8 @@ function CameraButton({ handleAssetUri }: CameraProps): JSX.Element {
 
     if (response.assets && response.assets.length > 0) {
       response.assets.forEach((asset: Asset) => {
-        if (asset.uri) {
-          handleAssetUri(asset);
+        if (asset.uri && asset.fileName) {
+          handleAssetUri(asset.uri, asset.fileName);
         }
       });
     }
@@ -40,7 +44,7 @@ function CameraButton({ handleAssetUri }: CameraProps): JSX.Element {
   const handleRequestCameraAccess = async () => {
     try {
       const granted = await PermissionsAndroid.request(
-        PermissionsAndroid.PERMISSIONS.CAMERA
+        PermissionsAndroid.PERMISSIONS.CAMERA,
       );
       if (granted === PermissionsAndroid.RESULTS.GRANTED) {
         setCameraRejected(false);
@@ -57,14 +61,14 @@ function CameraButton({ handleAssetUri }: CameraProps): JSX.Element {
     <>
       {cameraRejected ? (
         <Text style={cameraButtonStyles.cameraRejected}>
-          Please enable the "take picture" button by manually granting camera permissions from settings
+          Please enable the "take picture" button by manually granting camera
+          permissions from settings
         </Text>
       ) : (
         <TouchableOpacity
           disabled={isLoading}
           onPress={isLoading ? undefined : handleRequestCameraAccess}
-          style={cameraButtonStyles.container}
-        >
+          style={cameraButtonStyles.container}>
           <Text style={cameraButtonStyles.label}>
             {isLoading ? 'Loading...' : 'Take Picture'}
           </Text>

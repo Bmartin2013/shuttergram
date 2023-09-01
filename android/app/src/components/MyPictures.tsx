@@ -1,16 +1,16 @@
 import React from 'react';
 
-import {StyleSheet, Text, View} from 'react-native';
+import {Text, View} from 'react-native';
 
-import CarrouselProps from '../interfaces/Carrousel';
 import CarouselAlbum from './CarouselAlbum';
 import {styles} from '../styles/myPictures';
+import PicturesProps from '../interfaces/Pictures';
 
-function MyPictures({assets}: CarrouselProps): JSX.Element {
+function MyPictures({pictures}: PicturesProps): JSX.Element {
   return (
     <View style={styles.cardContainer}>
-      {assets.length > 0 ? (
-        <CarouselAlbum assets={assets} />
+       { pictures && pictures.length > 0 ? (
+        <CarouselAlbum assets={pictures} />
       ) : (
         <Text style={styles.blackCard}>
           All pictures will be displayed here

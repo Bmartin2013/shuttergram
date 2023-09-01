@@ -1,19 +1,36 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import CameraButton from './android/app/src/components/CameraButton';
 
 import {SafeAreaView, StatusBar, View} from 'react-native';
 
-import {Asset} from 'react-native-image-picker';
 import MyPictures from './android/app/src/components/MyPictures';
 import Header from './android/app/src/components/Header';
-import { layoutStyle } from './android/app/src/styles/app';
+import {layoutStyle} from './android/app/src/styles/app';
+import {
+  handlePicture,
+  getFileContent,
+  createFolder,
+} from './android/app/src/helpers/FsHelper';
+import {SHUTTERGRAM_FOLDER} from './android/app/src/constants';
+import PictureProps from './android/app/src/interfaces/Pictures';
 
 function App(): JSX.Element {
-  const [assets, setAssets] = useState<Asset[]>([]);
+  const [pictures, setPictures] = useState<PictureProps[]>([]);
 
-  const handleAssetURI = (asset: Asset) => {
-    setAssets((prevAssets: Asset[]) => [...prevAssets, asset]);
+  const getPictures = async () => {
+    const result = await getFileContent(SHUTTERGRAM_FOLDER);
+    setPictures(result);
   };
+
+  const handleAssetURI = (filePath: string, fileName: string) => {
+    handlePicture(filePath, `${SHUTTERGRAM_FOLDER}/${fileName}`);
+    getPictures();
+  };
+
+  useEffect(() => {
+    createFolder();
+    getPictures();
+  }, []);
 
   return (
     <>
@@ -21,7 +38,7 @@ function App(): JSX.Element {
       <SafeAreaView style={layoutStyle.safeView}>
         <Header />
         <View style={layoutStyle.myPictures}>
-          <MyPictures assets={assets} />
+          <MyPictures pictures={pictures} />
         </View>
         <View style={layoutStyle.cameraButton}>
           <CameraButton handleAssetUri={handleAssetURI} />
