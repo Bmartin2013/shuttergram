@@ -1,6 +1,8 @@
 import RNFS, {ReadDirItem} from 'react-native-fs';
 import PictureProps from '../interfaces/Pictures';
-import {SHUTTERGRAM_FOLDER} from '../constants';
+export const DOWNLOAD_PATH = RNFS.ExternalStorageDirectoryPath;
+export const PICTURES_FOLDER =`file://${DOWNLOAD_PATH}/Pictures`;
+export const SHUTTERGRAM_FOLDER =`${PICTURES_FOLDER}/shuttergram`;
 
 const getFileContent = async (path: string): Promise<PictureProps[]> => {
   try {
