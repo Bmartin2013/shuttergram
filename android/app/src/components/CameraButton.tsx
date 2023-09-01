@@ -1,45 +1,12 @@
 import React, {useState} from 'react';
 import {TouchableOpacity, Text, PermissionsAndroid} from 'react-native';
 import CameraProps from '../interfaces/Camera';
-import {
-  launchCamera,
-  ImagePickerResponse,
-  Asset,
-} from 'react-native-image-picker';
-import {CAMERA_ERROR_MSG, CAMERA_OPTIONS} from '../constants';
 import {cameraButtonStyles} from '../styles/cameraButton';
+import {handleLaunchCamera} from '../utils/CameraUtils';
 
 function CameraButton({onHandleAsset}: CameraProps): JSX.Element {
   const [isLoading, setLoading] = useState(false);
   const [cameraRejected, setCameraRejected] = useState(false);
-
-  const handleLaunchCamera = async () => {
-    setLoading(true);
-
-    try {
-      const response = await launchCamera(CAMERA_OPTIONS);
-      handleImagePickerResponse(response);
-    } catch (error) {
-      console.error(CAMERA_ERROR_MSG, error);
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  const handleImagePickerResponse = (response: ImagePickerResponse) => {
-    if (response.errorMessage) {
-      console.error(`${CAMERA_ERROR_MSG} ${response.errorMessage}`);
-      return;
-    }
-
-    if (response.assets && response.assets.length > 0) {
-      response.assets.forEach((asset: Asset) => {
-        if (asset.uri && asset.fileName) {
-          onHandleAsset(asset.uri, asset.fileName);
-        }
-      });
-    }
-  };
 
   const handleRequestCameraAccess = async () => {
     try {
@@ -48,7 +15,7 @@ function CameraButton({onHandleAsset}: CameraProps): JSX.Element {
       );
       if (granted === PermissionsAndroid.RESULTS.GRANTED) {
         setCameraRejected(false);
-        handleLaunchCamera();
+        handleLaunchCamera(setLoading, onHandleAsset);
       } else {
         setCameraRejected(true);
       }
