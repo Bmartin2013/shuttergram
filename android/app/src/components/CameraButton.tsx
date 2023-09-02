@@ -4,7 +4,7 @@ import CameraProps from '../interfaces/Camera';
 
 import {handleCameraPermission} from '../utils/PermissionUtils';
 
-import {cameraButtonStyles} from '../styles/CameraStyles';
+import {cameraButtonStyles} from '../styles/cameraStyles';
 import {handleLaunchCamera} from '../utils/CameraUtils';
 
 function CameraButton({onHandleAsset}: CameraProps): JSX.Element {
