@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
-import {TouchableOpacity, Text, PermissionsAndroid} from 'react-native';
+import {TouchableOpacity, Text} from 'react-native';
 import CameraProps from '../interfaces/Camera';
+import {CAMERA_ERROR_MSG, CAMERA_OPTIONS} from '../constants';
 
 import {
   launchCamera,
@@ -8,7 +9,8 @@ import {
   Asset,
 } from 'react-native-image-picker';
 
-import {CAMERA_ERROR_MSG, CAMERA_OPTIONS} from '../constants';
+import {handleCameraPermission} from '../utils/PermissionUtils';
+
 import {cameraButtonStyles} from '../styles/CameraStyles';
 
 function CameraButton({onHandleAsset}: CameraProps): JSX.Element {
@@ -43,21 +45,13 @@ function CameraButton({onHandleAsset}: CameraProps): JSX.Element {
     }
   };
 
-  const handleRequestCameraAccess = async () => {
-    try {
-      const granted = await PermissionsAndroid.request(
-        PermissionsAndroid.PERMISSIONS.CAMERA,
-      );
-      if (granted === PermissionsAndroid.RESULTS.GRANTED) {
-        setCameraRejected(false);
-        handleLaunchCamera();
-      } else {
-        setCameraRejected(true);
-      }
-    } catch (err) {
-      console.warn(err);
-    }
+  const onCameraApproved = () => {
+    setCameraRejected(false);
+    handleLaunchCamera();
   };
+
+  const handleRequestCameraAccess = () =>
+    handleCameraPermission(onCameraApproved, () => setCameraRejected(true));
 
   return (
     <>

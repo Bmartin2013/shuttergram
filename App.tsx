@@ -1,16 +1,14 @@
 import React, {useState, useEffect} from 'react';
-import CameraButton from './android/app/src/components/CameraButton';
+import {SafeAreaView, StatusBar, View, Image} from 'react-native';
 
-import {SafeAreaView, StatusBar, View} from 'react-native';
+import {HEADER_IMG_PATH} from './android/app/src/constants';
 
-import Header from './android/app/src/components/Header';
-import {layoutStyle} from './android/app/src/styles/app';
-import {
-  getPictures,
-  updatePictures,
-} from './android/app/src/utils/FsUtils';
+import {getPictures, updatePictures} from './android/app/src/utils/FsUtils';
 import PictureProps from './android/app/src/interfaces/Picture';
 import PictureSection from './android/app/src/components/PictureSection';
+import CameraButton from './android/app/src/components/CameraButton';
+
+import {layoutStyle} from './android/app/src/styles/app';
 
 function App(): JSX.Element {
   const [pictures, setPictures] = useState<PictureProps[]>([]);
@@ -28,7 +26,9 @@ function App(): JSX.Element {
     <>
       <StatusBar />
       <SafeAreaView style={layoutStyle.safeView}>
-        <Header />
+        <View style={layoutStyle.header}>
+          <Image source={HEADER_IMG_PATH} />
+        </View>
         <View style={layoutStyle.myPictures}>
           <PictureSection isEmpty={isEmpty} pictures={pictures} />
         </View>

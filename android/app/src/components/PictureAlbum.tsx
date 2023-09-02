@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {Image} from 'react-native';
 import Carousel from 'react-native-reanimated-carousel';
-import { PictureAlbumStyles } from '../styles/PictureStyles';
+import { PictureAlbumStyles } from '../styles/pictureStyles';
 import { CARROUSEL_STATIC_PROPS } from '../constants';
 import PicturesProps from '../interfaces/Picture';
 import PictureProps from '../interfaces/Picture';

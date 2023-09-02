@@ -1,5 +1,5 @@
 import { StyleSheet } from "react-native";
-import { COLORS } from "./_colors";
+import { COLORS } from "./global/colors";
 
 const cameraBtnStyles = StyleSheet.create({
     cammeraButtonContainer: {

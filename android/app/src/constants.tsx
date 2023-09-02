@@ -1,5 +1,5 @@
 import {MediaType} from 'react-native-image-picker';
-import {VARIABLES} from './styles/_variables';
+import {VARIABLES} from './styles/global/variables';
 
 export const CARROUSEL_STATIC_PROPS = {
   width: VARIABLES.photoSize,

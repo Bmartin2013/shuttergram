@@ -1,25 +1,37 @@
-import { StyleSheet } from "react-native";
-import { COLORS } from "./_colors";
+import {StyleSheet} from 'react-native';
+import {COLORS} from './global/colors';
 
-const styles = StyleSheet.create({
-    safeViewContainer: {
-      flex: 1,
-      backgroundColor: COLORS.backgroundGrey,
-    },
-    cameraButtonContainer: {
-      flex: 1,
-    },
-    myPicturesContainer: {
-      flex: 4,
-    },
-    containerAlignment: {
-      justifyContent: 'center',
-      padding: 20,
-    },
-  });
-  
- export const layoutStyle = {
-    safeView: styles.safeViewContainer,
-    myPictures: [styles.myPicturesContainer, styles.containerAlignment],
-    cameraButton: [styles.cameraButtonContainer, styles.containerAlignment],
-  };
+// GENERAL APP STYLES
+const appStyles = StyleSheet.create({
+  safeViewContainer: {
+    flex: 1,
+    backgroundColor: COLORS.backgroundGrey,
+  },
+  cameraButtonContainer: {
+    flex: 1,
+  },
+  myPicturesContainer: {
+    flex: 4,
+  },
+  containerAlignment: {
+    justifyContent: 'center',
+    padding: 20,
+  },
+});
+
+// APP HEADER
+const headerStyles = StyleSheet.create({
+  headerContainer: {
+    flex: 1,
+    backgroundColor: COLORS.primaryPetroleum,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+});
+
+export const layoutStyle = {
+  safeView: appStyles.safeViewContainer,
+  myPictures: [appStyles.myPicturesContainer, appStyles.containerAlignment],
+  cameraButton: [appStyles.cameraButtonContainer, appStyles.containerAlignment],
+  header: [headerStyles.headerContainer],
+};

@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {Text} from 'react-native';
 import PictureAlbum from './PictureAlbum';
-import {pictureSectionStyles} from '../styles/PictureStyles';
+import {pictureSectionStyles} from '../styles/pictureStyles';
 import PicturesProps from '../interfaces/Picture';
 import PictureCard from './PictureCard';
 

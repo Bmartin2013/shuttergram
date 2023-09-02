@@ -1,6 +1,6 @@
 import React from 'react';
 import {Text, View} from 'react-native';
-import {pictureCardStyles} from '../styles/PictureStyles';
+import {pictureCardStyles} from '../styles/pictureStyles';
 
 interface PictureCardProps {
   children: React.ReactNode;

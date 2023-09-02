@@ -1,6 +1,6 @@
 import { StyleSheet } from "react-native";
-import { COLORS } from "./_colors";
-import { VARIABLES } from "./_variables";
+import { COLORS } from "./global/colors";
+import { VARIABLES } from "./global/variables";
 
 // PICTURE CARD
 export const pictureCardStyles = StyleSheet.create({
