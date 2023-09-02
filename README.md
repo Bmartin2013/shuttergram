@@ -1,79 +1,109 @@
-This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
+# Shuttergram
+Show and share your memories with this camera app. Create a cool album with sliding photos.📷✨
 
-# Getting Started
 
->**Note**: Make sure you have completed the [React Native - Environment Setup](https://reactnative.dev/docs/environment-setup) instructions till "Creating a new application" step, before proceeding.
+https://github.com/Bmartin2013/shuttergram/assets/3893598/80f9e10f-3e78-447a-bc06-7e9297cb5345
 
-## Step 1: Start the Metro Server
 
-First, you will need to start **Metro**, the JavaScript _bundler_ that ships _with_ React Native.
 
-To start Metro, run the following command from the _root_ of your React Native project:
+### Core features
+- Take pictures with your camera and display them on the app
+- Display one or more pictures with a fancy carousel.
+- Store those pictures in a special folder called `shuttergram`, inside `Pictures`
+- Preview your photo before uploading and accept/reject it. If it's rejected, go back to the home page
 
-```bash
-# using npm
-npm start
+## Motivation
+This react-native photo album was intended to test and try the following:
 
-# OR using Yarn
-yarn start
-```
+- React-Native/ReactJS coding skills
+- Typescript coding skills
+- Mobile design
+- Camera manipulation
+- 3rd party library integration
+- Permissions
+- File system manipulation
 
-## Step 2: Start your Application
+## Core dependencies 
+- react-native 0.72.4
+- react-native-fs 2.20.0
+- react-native-image-picker 5.6.1
+- react-native-reanimated-carousel 3.4.2
+- react-native-splash-screen 3.3.0
 
-Let Metro Bundler run in its _own_ terminal. Open a _new_ terminal from the _root_ of your React Native project. Run the following command to start your _Android_ or _iOS_ app:
+## Installation
+Before installing, make sure you already installed the following tools
 
-### For Android
+- nvm-windows (if you are using windows, otherwise look for the right nvm version that fits with your OS)
+- Open JDK v11.0.2 Download [here]([url](https://jdk.java.net/archive/)https://jdk.java.net/archive/)
+- Android studio
+- Android SDK
+- Android SDK Platform
+- Android Virtual Device
+- node version 16.13.1
 
-```bash
-# using npm
-npm run android
+### Environment setup
+Before running this app locally, make sure you have all the required setup for react-native. Otherwise, please start setting up the environment mentioned [here]([url](https://reactnative.dev/docs/environment-setup)https://reactnative.dev/docs/environment-setup) before going on the installation.
 
-# OR using Yarn
-yarn android
-```
+* **NOTE**: Follow the tutorial until you reach to the **Creating a new application** title. It is not mandatory to follow that section but recommended to check if your environment was correctly setup.
 
-### For iOS
+### Download and run 
+To download this project, open a terminal where it should be placed and run the following  command: 
 
-```bash
-# using npm
-npm run ios
+```git clone https://github.com/Bmartin2013/shuttergram.git```
 
-# OR using Yarn
-yarn ios
-```
+Then, move to the `shuttergram` folder by running:
 
-If everything is set up _correctly_, you should see your new app running in your _Android Emulator_ or _iOS Simulator_ shortly provided you have set up your emulator/simulator correctly.
+```cd shuttergram``` 
 
-This is one way to run your app — you can also run it directly from within Android Studio and Xcode respectively.
+And open a new terminal to install the libraries with 
 
-## Step 3: Modifying your App
+```npm install```
 
-Now that you have successfully run the app, let's modify it.
+Once you've installed all the packages, start the [Metro](https://facebook.github.io/metro/) bundler with
 
-1. Open `App.tsx` in your text editor of choice and edit some lines.
-2. For **Android**: Press the <kbd>R</kbd> key twice or select **"Reload"** from the **Developer Menu** (<kbd>Ctrl</kbd> + <kbd>M</kbd> (on Window and Linux) or <kbd>Cmd ⌘</kbd> + <kbd>M</kbd> (on macOS)) to see your changes!
+```npm start```. 
 
-   For **iOS**: Hit <kbd>Cmd ⌘</kbd> + <kbd>R</kbd> in your iOS Simulator to reload the app and see your changes!
+You should see the following screen:
+![Screenshot 2023-09-02 190929](https://github.com/Bmartin2013/shuttergram/assets/3893598/c4e87c7f-8770-41ce-bdb9-b091e6364100)
 
-## Congratulations! :tada:
+Then, open a new tab and step into the project's folder by running 
 
-You've successfully run and modified your React Native App. :partying_face:
+```cd your_project_path/shuttergram```
 
-### Now what?
+Finally, run:
 
-- If you want to add this new React Native code to an existing application, check out the [Integration guide](https://reactnative.dev/docs/integration-with-existing-apps).
-- If you're curious to learn more about React Native, check out the [Introduction to React Native](https://reactnative.dev/docs/getting-started).
+```npm run android```
 
-# Troubleshooting
+The virtual device previously setup during the `Environment setup` step will launch. If everything's ok, you should see the following prints
+![Screenshot 2023-09-02 192146](https://github.com/Bmartin2013/shuttergram/assets/3893598/2dd291d9-02f8-4d17-9225-ed8c47c88250)
+![Screenshot 2023-09-02 191722](https://github.com/Bmartin2013/shuttergram/assets/3893598/65d16356-526e-456f-87c1-dbecfdc306c7)
 
-If you can't get this to work, see the [Troubleshooting](https://reactnative.dev/docs/troubleshooting) page.
+And this is the app running for the first time 
 
-# Learn More
+![Screenshot 2023-09-02 192449](https://github.com/Bmartin2013/shuttergram/assets/3893598/8a623372-7c77-4666-ac76-88a145e6e36c)
 
-To learn more about React Native, take a look at the following resources:
+### Run with android studio (OPTIONAL)
+You can also run the app from android studio. Go to android studio > Device manager and clic play on your selected android device to start running it.
 
-- [React Native Website](https://reactnative.dev) - learn more about React Native.
-- [Getting Started](https://reactnative.dev/docs/environment-setup) - an **overview** of React Native and how setup your environment.
-- [Learn the Basics](https://reactnative.dev/docs/getting-started) - a **guided tour** of the React Native **basics**.
-- [Blog](https://reactnative.dev/blog) - read the latest official React Native **Blog** posts.
-- [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
+![Screenshot 2023-09-02 192727](https://github.com/Bmartin2013/shuttergram/assets/3893598/18ff9e56-51ce-440e-8681-7cf2fe2567c3)
+
+**And that's it!** now you can enjoy your app on a virtual device.
+
+### Build a debug-apk
+
+Once you are happy with your new code version, you can create a debug apk to try it in your phone. 
+
+To do so, go to the project folder and run the following command 
+
+```react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/src/main/res```
+
+Then, move to the android folder (`cd android`) and run:
+
+```./gradlew assembleDebug```
+
+And done! now you can check your apk-debug.apk in the `./android/app/build/outputs/apk/debug` folder
+
+
+
+
+
