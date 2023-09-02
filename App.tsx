@@ -1,14 +1,14 @@
 import React, {useState, useEffect} from 'react';
 import {SafeAreaView, StatusBar, View, Image} from 'react-native';
 
-import {HEADER_IMG_PATH} from './android/app/src/constants';
-
 import {getPictures, updatePictures} from './android/app/src/utils/FsUtils';
 import PictureProps from './android/app/src/interfaces/Picture';
 import PictureSection from './android/app/src/components/PictureSection';
 import CameraButton from './android/app/src/components/CameraButton';
 
 import {layoutStyle} from './android/app/src/styles/app';
+
+export const HEADER_IMG_PATH = require('./android/app/src/img/header.png');
 
 function App(): JSX.Element {
   const [pictures, setPictures] = useState<PictureProps[]>([]);
