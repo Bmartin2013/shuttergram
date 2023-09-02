@@ -1,13 +1,15 @@
 import React, {useState} from 'react';
 import {TouchableOpacity, Text, PermissionsAndroid} from 'react-native';
 import CameraProps from '../interfaces/Camera';
+
 import {
   launchCamera,
   ImagePickerResponse,
   Asset,
 } from 'react-native-image-picker';
+
 import {CAMERA_ERROR_MSG, CAMERA_OPTIONS} from '../constants';
-import {cameraButtonStyles} from '../styles/cameraButton';
+import {cameraButtonStyles} from '../styles/CameraStyles';
 
 function CameraButton({onHandleAsset}: CameraProps): JSX.Element {
   const [isLoading, setLoading] = useState(false);

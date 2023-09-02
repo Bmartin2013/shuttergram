@@ -1,8 +1,8 @@
 import RNFS, {ReadDirItem} from 'react-native-fs';
-import PictureProps from '../interfaces/Pictures';
+import PictureProps from '../interfaces/Picture';
 export const DOWNLOAD_PATH = RNFS.ExternalStorageDirectoryPath;
-export const PICTURES_FOLDER =`file://${DOWNLOAD_PATH}/Pictures`;
-export const SHUTTERGRAM_FOLDER =`${PICTURES_FOLDER}/shuttergram`;
+export const PICTURES_FOLDER = `file://${DOWNLOAD_PATH}/Pictures`;
+export const SHUTTERGRAM_FOLDER = `${PICTURES_FOLDER}/shuttergram`;
 
 const getFileContent = async (path: string): Promise<PictureProps[]> => {
   try {
@@ -44,14 +44,22 @@ const handlePicture = async (filePath: string, destPath: string) => {
 export const updatePictures = (
   filePath: string,
   fileName: string,
-  setPictures: any,
+  setPictures: (pictures: PictureProps[]) => void,
+  setIsEmpty: (isEmpty: boolean) => void,
 ) => {
   handlePicture(filePath, `${SHUTTERGRAM_FOLDER}/${fileName}`);
-  getPictures(setPictures);
+  getPictures(setPictures, setIsEmpty);
 };
 
-export const getPictures = async (setPictures: any) => {
-  createFolder();
+export const getPictures = async (
+  setPictures: (pictures: PictureProps[]) => void,
+  setIsEmpty?: (isEmpty: boolean) => void,
+) => {
+  const existsFolder = await RNFS.exists(SHUTTERGRAM_FOLDER);
+  if (!existsFolder) {
+    createFolder();
+  }
   const result = await getFileContent(SHUTTERGRAM_FOLDER);
-  setPictures(result);
+  result.length > 0 && setPictures(result);
+  setIsEmpty && setIsEmpty(result.length === 0);
 };
