@@ -23,6 +23,7 @@ const useCamera = (
   ) => {
     setLoading(true);
     launchImagePickerCamera(onHandlePicture);
+    setLoading(false);
   };
 
   return {

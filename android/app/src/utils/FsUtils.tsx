@@ -4,8 +4,20 @@ export const DOWNLOAD_PATH = RNFS.ExternalStorageDirectoryPath;
 export const PICTURES_FOLDER = `file://${DOWNLOAD_PATH}/Pictures`;
 export const SHUTTERGRAM_FOLDER = `${PICTURES_FOLDER}/shuttergram`;
 
+const existsFolder = async () => {
+  try {
+    const exists = await RNFS.exists(SHUTTERGRAM_FOLDER);
+    return exists;
+  } catch (e) {
+    console.error(e);
+    return false;
+  }
+};
+
 export const getFileContent = async (path: string): Promise<PictureProps[]> => {
   try {
+    const exists = await existsFolder();
+    if (!exists) return [];
     const reader = (await RNFS.readDir(path)).filter((item: ReadDirItem) =>
       item.isFile(),
     );
@@ -23,10 +35,8 @@ export const getFileContent = async (path: string): Promise<PictureProps[]> => {
 
 export const createFolder = async () => {
   try {
-    const exists = await RNFS.exists(SHUTTERGRAM_FOLDER);
-    if (!exists) {
-      RNFS.mkdir(SHUTTERGRAM_FOLDER);
-    }
+    const exists = await existsFolder();
+    !exists && RNFS.mkdir(SHUTTERGRAM_FOLDER);
   } catch (e) {
     console.error(e);
   }
@@ -35,15 +45,6 @@ export const createFolder = async () => {
 export const handlePicture = async (filePath: string, destPath: string) => {
   try {
     RNFS.moveFile(filePath, destPath);
-  } catch (e) {
-    console.error(e);
-  }
-};
-
-export const existsFolder = async () => {
-  try {
-    const exists = await RNFS.exists(SHUTTERGRAM_FOLDER);
-    return exists;
   } catch (e) {
     console.error(e);
   }

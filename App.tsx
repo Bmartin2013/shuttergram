@@ -3,7 +3,7 @@ import {SafeAreaView, StatusBar, View, Image} from 'react-native';
 import PictureSection from './android/app/src/components/PictureSection';
 import CameraButton from './android/app/src/components/CameraButton';
 
-import {layoutStyle} from './android/app/src/styles/app';
+import {layoutStyle} from './android/app/src/styles/appStyles';
 import usePictures from './android/app/src/hooks/usePictures';
 
 export const HEADER_IMG_PATH = require('./android/app/src/img/header.png');

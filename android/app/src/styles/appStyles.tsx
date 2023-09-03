@@ -11,7 +11,7 @@ const appStyles = StyleSheet.create({
     flex: 1,
   },
   myPicturesContainer: {
-    flex: 3,
+    flex: 4,
   },
   containerAlignment: {
     justifyContent: 'center',

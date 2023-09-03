@@ -89,6 +89,8 @@ You can also run the app from android studio. Go to android studio > Device mana
 
 **And that's it!** now you can enjoy your app on a virtual device.
 
+**NOTE:** If you are already running the project, press `a` in the Metro terminal to link your app with the selected device.
+
 ### Build a debug-apk
 
 Once you are happy with your new code version, you can create a debug apk to try it in your phone. 
