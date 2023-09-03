@@ -103,7 +103,7 @@ Then, move to the android folder (`cd android`) and run:
 
 ```./gradlew assembleDebug```
 
-And done! now you can check your apk-debug.apk in the `./android/app/build/outputs/apk/debug` folder
+And done! now you can check your app-debug.apk in the `./android/app/build/outputs/apk/debug` folder
 
 
 
