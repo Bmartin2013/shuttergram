@@ -1,26 +1,15 @@
-import React, {useState, useEffect} from 'react';
+import React from 'react';
 import {SafeAreaView, StatusBar, View, Image} from 'react-native';
-
-import {getPictures, updatePictures} from './android/app/src/utils/FsUtils';
-import PictureProps from './android/app/src/interfaces/Picture';
 import PictureSection from './android/app/src/components/PictureSection';
 import CameraButton from './android/app/src/components/CameraButton';
 
 import {layoutStyle} from './android/app/src/styles/app';
+import usePictures from './android/app/src/hooks/usePictures';
 
 export const HEADER_IMG_PATH = require('./android/app/src/img/header.png');
 
 function App(): JSX.Element {
-  const [pictures, setPictures] = useState<PictureProps[]>([]);
-  const [isEmpty, setIsEmpty] = useState(false);
-
-  const onHandleAsset = (filePath: string, fileName: string) => {
-    updatePictures(filePath, fileName, setPictures, setIsEmpty);
-  };
-
-  useEffect(() => {
-    getPictures(setPictures, setIsEmpty);
-  }, []);
+  const {isEmpty, pictures, onHandlePicture} = usePictures();
 
   return (
     <>
@@ -33,7 +22,7 @@ function App(): JSX.Element {
           <PictureSection isEmpty={isEmpty} pictures={pictures} />
         </View>
         <View style={layoutStyle.cameraButton}>
-          <CameraButton onHandleAsset={onHandleAsset} />
+          <CameraButton onHandlePicture={onHandlePicture} />
         </View>
       </SafeAreaView>
     </>

@@ -7,12 +7,11 @@ import {
 
 export const CAMERA_ERROR_MSG = 'Camera error:';
 
-
 export const CAMERA_OPTIONS = {
   mediaType: 'photo' as MediaType,
 };
 
-const handleImagePickerResponse = (
+export const handleImagePickerResponse = (
   response: ImagePickerResponse,
   onHandleAsset: (fileName: string, destPath: string) => void,
 ) => {
@@ -30,18 +29,13 @@ const handleImagePickerResponse = (
   }
 };
 
-export const handleLaunchCamera = async (
-  setLoading: (isLoading: boolean) => void,
-  onHandleAsset: (fileName: string, destPath: string) => void,
+export const launchImagePickerCamera = async (
+  onHandlePicture: (fileName: string, filePath: string) => void,
 ) => {
-  setLoading(true);
-
   try {
     const response = await launchCamera(CAMERA_OPTIONS);
-    handleImagePickerResponse(response, onHandleAsset);
+    handleImagePickerResponse(response, onHandlePicture);
   } catch (error) {
     console.error(CAMERA_ERROR_MSG, error);
-  } finally {
-    setLoading(false);
   }
 };

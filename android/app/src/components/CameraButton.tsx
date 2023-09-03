@@ -1,24 +1,15 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {TouchableOpacity, Text} from 'react-native';
-import CameraProps from '../interfaces/Camera';
-
-import {handleCameraPermission} from '../utils/PermissionUtils';
 
 import {cameraButtonStyles} from '../styles/cameraStyles';
-import {handleLaunchCamera} from '../utils/CameraUtils';
+import useCamera from '../hooks/useCamera';
+import CameraProps from '../interfaces/Camera';
 
-function CameraButton({onHandleAsset}: CameraProps): JSX.Element {
-  const [isLoading, setLoading] = useState(false);
-  const [cameraRejected, setCameraRejected] = useState(false);
-
-  const onCameraApproved = () => {
-    setCameraRejected(false);
-    handleLaunchCamera(setLoading, onHandleAsset);
-  };
-
-  const handleRequestCameraAccess = () =>
-    handleCameraPermission(onCameraApproved, () => setCameraRejected(true));
-
+function CameraButton(
+  onHandlePicture: CameraProps,
+): JSX.Element {
+  const {cameraRejected, isLoading, handleRequestCameraAccess} =
+    useCamera(onHandlePicture);
   return (
     <>
       {cameraRejected ? (
