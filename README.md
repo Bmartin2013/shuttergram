@@ -8,7 +8,6 @@ https://github.com/Bmartin2013/shuttergram/assets/3893598/3bd9833a-cc45-4bf2-aac
 https://github.com/Bmartin2013/shuttergram/assets/3893598/10ae3706-25a8-422e-b02b-63c5189a1f1c
 
 
-![Screenshot 2023-09-03 001230](https://github.com/Bmartin2013/shuttergram/assets/3893598/35d7ea05-77b1-443f-96c9-dee188b8b924)
 ![Screenshot 2023-09-03 001214](https://github.com/Bmartin2013/shuttergram/assets/3893598/a45bdeba-79f5-4f50-82ea-7e374badcf7f)
 
 
@@ -73,7 +72,9 @@ Once you've installed all the packages, start the [Metro](https://facebook.githu
 ```npm start```. 
 
 You should see the following screen:
-![Screenshot 2023-09-02 190929](https://github.com/Bmartin2013/shuttergram/assets/3893598/c4e87c7f-8770-41ce-bdb9-b091e6364100)
+
+![Screenshot 2023-09-03 203018](https://github.com/Bmartin2013/shuttergram/assets/3893598/7b97d2af-0d96-4191-ac56-b00db49b5758)
+
 
 Then, open a new tab and step into the project's folder by running 
 
@@ -96,9 +97,9 @@ You can also run the app from android studio. Go to android studio > Device mana
 
 ![Screenshot 2023-09-02 192727](https://github.com/Bmartin2013/shuttergram/assets/3893598/18ff9e56-51ce-440e-8681-7cf2fe2567c3)
 
-**And that's it!** now you can enjoy your app on a virtual device.
+Then run the project with `npm start` and press `a` in the Metro terminal to link your app with the selected device.
 
-**NOTE:** If you are already running the project, press `a` in the Metro terminal to link your app with the selected device.
+**And that's it!** now you can enjoy your app on a virtual device.
 
 ### Build a debug-apk
 
