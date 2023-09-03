@@ -2,7 +2,13 @@
 Show and share your memories with this camera app. Create a cool album with sliding photos.📷✨
 
 
-https://github.com/Bmartin2013/shuttergram/assets/3893598/80f9e10f-3e78-447a-bc06-7e9297cb5345
+
+https://github.com/Bmartin2013/shuttergram/assets/3893598/9b858772-16df-4ac4-929f-fa13b4cc8aca
+
+![Screenshot 2023-09-03 001230](https://github.com/Bmartin2013/shuttergram/assets/3893598/35d7ea05-77b1-443f-96c9-dee188b8b924)
+![Screenshot 2023-09-03 001214](https://github.com/Bmartin2013/shuttergram/assets/3893598/a45bdeba-79f5-4f50-82ea-7e374badcf7f)
+
+
 
 
 
